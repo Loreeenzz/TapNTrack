@@ -1,0 +1,200 @@
+<resources>
+    <string name="app_name">TapNTrack</string>
+
+    <!-- Login Screen -->
+    <string name="login_title">Login</string>
+    <string name="login_email_hint">Enter your email</string>
+    <string name="login_password_hint">Enter your password</string>
+    <string name="login_button">Sign In</string>
+    <string name="login_forgot_password">Forgot Password?</string>
+    <string name="login_signup_prompt">Don\'t have an account? </string>
+    <string name="login_signup_link">Sign Up</string>
+    <string name="login_welcome">Welcome Back</string>
+    <string name="login_form_title">Sign In to Your Account</string>
+    <string name="login_email_label">Email</string>
+    <string name="login_password_label">Password</string>
+
+    <!-- Sign Up Screen -->
+    <string name="signup_title">Create Account</string>
+    <string name="signup_subtitle">Join TapNTrack today</string>
+    <string name="signup_name_hint">Full Name</string>
+    <string name="signup_first_name_hint">Enter your first name</string>
+    <string name="signup_last_name_hint">Enter your last name</string>
+    <string name="signup_middle_name_hint">Enter your middle name</string>
+    <string name="signup_email_hint">Enter your email</string>
+    <string name="signup_password_hint">Min 6 characters</string>
+    <string name="signup_confirm_password_hint">Re-enter your password</string>
+    <string name="signup_button">Create Account</string>
+    <string name="signup_login_prompt">Already have an account? </string>
+    <string name="signup_login_link">Sign In</string>
+    <string name="signup_form_title">Join TapNTrack Today</string>
+    <string name="signup_welcome">Create Your Account</string>
+    <string name="signup_first_name_label">First Name</string>
+    <string name="signup_last_name_label">Last Name</string>
+    <string name="signup_middle_name_label">Middle Name (Optional)</string>
+    <string name="signup_email_label">Email</string>
+    <string name="signup_password_label">Password</string>
+    <string name="signup_confirm_password_label">Confirm Password</string>
+
+    <!-- Forgot Password Screen -->
+    <string name="forgot_password_title">Reset Password</string>
+    <string name="forgot_password_instructions">Enter your email and we\'ll send you a link to reset your password.</string>
+    <string name="forgot_password_email_hint">Email</string>
+    <string name="forgot_password_email_label">Email</string>
+    <string name="forgot_password_button">Send Reset Email</string>
+    <string name="forgot_password_back_link">Back to Login</string>
+
+    <!-- Dashboard Screen -->
+    <string name="logout_button">Logout</string>
+
+    <!-- Bottom Navigation Menu -->
+    <string name="menu_home">Home</string>
+    <string name="menu_logs">Logs</string>
+    <string name="menu_users">Users</string>
+    <string name="menu_settings">Settings</string>
+
+    <!-- Fragment Titles and Placeholders -->
+    <string name="fragment_home_title">Home</string>
+    <string name="fragment_home_placeholder">Dashboard content will be added here</string>
+    <string name="fragment_logs_title">Logs</string>
+    <string name="fragment_logs_placeholder">Track logs and history will be displayed here</string>
+    <string name="fragment_users_title">Users</string>
+    <string name="fragment_users_placeholder">User information will be displayed here</string>
+    <string name="fragment_settings_title">Settings</string>
+    <string name="fragment_settings_placeholder">App settings and preferences will be displayed here</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_profile_information">Profile Information</string>
+    <string name="settings_name_label">Name:</string>
+    <string name="settings_email_label">Email:</string>
+    <string name="settings_view_profile_button">View Profile</string>
+    <string name="settings_edit_profile_button">Edit Profile</string>
+    <string name="settings_change_password_button">Change Password</string>
+    <string name="settings_logout_button">Logout</string>
+    <string name="settings_loading">Loading...</string>
+    <string name="settings_profile_loaded">Profile loaded - View %s</string>
+
+    <!-- Edit Profile Screen -->
+    <string name="edit_profile_title">Edit Profile</string>
+    <string name="edit_profile_email_label">Email Address</string>
+    <string name="edit_profile_name_label">Full Name</string>
+    <string name="edit_profile_name_hint">Enter your full name</string>
+    <string name="edit_profile_update_button">Update Profile</string>
+    <string name="edit_profile_cancel_button">Cancel</string>
+    <string name="edit_profile_update_success">Profile updated successfully</string>
+    <string name="edit_profile_load_error">Failed to load profile: %s</string>
+    <string name="edit_profile_update_error">Failed to update profile: %s</string>
+    <string name="edit_profile_name_validation_error">Name must be between 2 and 50 characters</string>
+    <string name="edit_profile_not_found_error">User profile not found</string>
+
+    <!-- Change Password Screen -->
+    <string name="change_password_title">Change Password</string>
+    <string name="change_password_current_label">Current Password</string>
+    <string name="change_password_current_hint">Enter your current password</string>
+    <string name="change_password_new_label">New Password</string>
+    <string name="change_password_new_hint">Enter your new password (min 6 characters)</string>
+    <string name="change_password_confirm_label">Confirm Password</string>
+    <string name="change_password_confirm_hint">Confirm your new password</string>
+    <string name="change_password_button">Change Password</string>
+    <string name="change_password_cancel_button">Cancel</string>
+    <string name="change_password_success">Password changed successfully</string>
+    <string name="change_password_current_required">Please enter your current password</string>
+    <string name="change_password_new_required">Please enter your new password</string>
+    <string name="change_password_confirm_required">Please confirm your new password</string>
+    <string name="change_password_invalid_length">New password must be at least 6 characters</string>
+    <string name="change_password_mismatch">Passwords do not match</string>
+    <string name="change_password_same_as_current">New password must be different from current password</string>
+    <string name="change_password_invalid_current">Current password is incorrect</string>
+    <string name="change_password_weak_password">New password is too weak. Please use at least 6 characters.</string>
+    <string name="change_password_error">Failed to change password: %s</string>
+    <string name="change_password_auth_error">Authentication failed. Please try again.</string>
+
+    <!-- Logout Dialog -->
+    <string name="logout_dialog_title">Logout</string>
+    <string name="logout_dialog_message">Are you sure you want to logout?</string>
+    <string name="logout_dialog_yes">Yes</string>
+    <string name="logout_dialog_no">No</string>
+    <string name="logout_success">Logged out successfully</string>
+    <string name="logout_error">Logout failed: %s</string>
+
+    <!-- Attendance Records -->
+    <string name="attendance_location_format">Location: %s</string>
+    <string name="attendance_event_type_placeholder">CHECK_IN</string>
+    <string name="attendance_event_time_placeholder">Oct 20, 2024 02:30 PM</string>
+    <string name="attendance_event_location_placeholder">Location: Main Gate</string>
+
+    <!-- User Item Layout Placeholders -->
+    <string name="user_item_name_placeholder">Student Name</string>
+    <string name="user_item_email_placeholder">student@school.com</string>
+    <string name="user_item_status_placeholder">Active</string>
+    <string name="user_item_created_placeholder">Created: Oct 01, 2024</string>
+    <string name="user_item_last_login_placeholder">Last login: Oct 20, 2024 at 02:30 PM</string>
+
+    <!-- Users Fragment Strings -->
+    <string name="fragment_users_titles">User Management</string>
+    <string name="fragment_users_search_hint">Search by name or email</string>
+    <string name="fragment_users_select_all">Select All</string>
+    <string name="fragment_users_actions_button">Actions</string>
+    <string name="fragment_users_empty_title">No users found</string>
+    <string name="fragment_users_empty_subtitle">Try adjusting your search or filters</string>
+    <string name="fragment_users_reset_button">Reset</string>
+
+    <!-- User Details Fragment Strings -->
+    <string name="fragment_user_details_title">User Details</string>
+    <string name="fragment_user_details_back_button">← Back</string>
+    <string name="fragment_user_details_profile_section">Profile Information</string>
+    <string name="fragment_user_details_statistics_section">Activity Statistics</string>
+    <string name="fragment_user_details_attendance_section">Recent Attendance Records</string>
+    <string name="fragment_user_details_stat_attendance">Total Attendance</string>
+    <string name="fragment_user_details_stat_rate">Attendance Rate</string>
+    <string name="fragment_user_details_stat_logins">Total Logins</string>
+    <string name="fragment_user_details_no_records">No attendance records found</string>
+    <string name="fragment_user_details_stat_placeholder">0</string>
+    <string name="fragment_user_details_rate_placeholder">0%</string>
+    <string name="fragment_user_details_last_seen_placeholder">Last seen: Never</string>
+    <string name="fragment_user_details_name_label">Name: </string>
+    <string name="fragment_user_details_email_label">Email: </string>
+    <string name="fragment_user_details_role_label">Role: </string>
+    <string name="fragment_user_details_status_label">Status: </string>
+    <string name="fragment_user_details_created_label">Created: </string>
+    <string name="delete_button">Delete</string>
+
+    <!-- User Management Strings -->
+    <string name="user_status_active">Active</string>
+    <string name="user_status_inactive">Inactive</string>
+    <string name="user_created_format">Created: %s</string>
+    <string name="user_last_login_format">Last login: %s at %s</string>
+    <string name="user_last_login_never">Last login: Never</string>
+
+    <!-- User Details Fragment Strings -->
+    <string name="user_details_name_format">Name: %s</string>
+    <string name="user_details_email_format">Email: %s</string>
+    <string name="user_details_role_format">Role: %s</string>
+    <string name="user_details_status_format">Status: %s</string>
+    <string name="user_details_created_format">Created: %s</string>
+    <string name="user_details_last_seen_format">Last seen: %s</string>
+    <string name="user_details_last_seen_never">Last seen: Never</string>
+    <string name="user_details_attendance_rate_format">%.1f%%</string>
+    <string name="user_details_deactivate_button">Deactivate</string>
+    <string name="user_details_activate_button">Activate</string>
+
+    <!-- Users Fragment Strings -->
+    <string name="users_filter_all_status">All Status</string>
+    <string name="users_filter_status_active">Status: Active</string>
+    <string name="users_filter_status_inactive">Status: Inactive</string>
+    <string name="users_sort_name">Sort: Name</string>
+    <string name="users_sort_created">Sort: Date Created</string>
+    <string name="users_sort_last_login">Sort: Last Login</string>
+    <string name="users_user_count_format">%d user%s</string>
+    <string name="users_no_selection_error">No users selected</string>
+    <string name="users_bulk_actions_title">Bulk Actions (%d users)</string>
+    <string name="users_activate_confirm">Activate %d user(s)?</string>
+    <string name="users_deactivate_confirm">Deactivate %d user(s)?</string>
+    <string name="users_delete_confirm">Delete %d user(s)? This cannot be undone.</string>
+    <string name="users_selection_count_format">%d selected</string>
+
+    <!-- Common Errors -->
+    <string name="error_user_not_logged_in">User not logged in</string>
+    <string name="error_generic">An error occurred. Please try again.</string>
+</resources>
