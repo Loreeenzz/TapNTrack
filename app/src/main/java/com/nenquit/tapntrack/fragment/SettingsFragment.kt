@@ -26,7 +26,6 @@ class SettingsFragment : Fragment(), SettingsContract.View {
     // UI components
     private lateinit var userNameTextView: TextView
     private lateinit var userEmailTextView: TextView
-    private lateinit var viewProfileButton: Button
     private lateinit var editProfileButton: Button
     private lateinit var changePasswordButton: Button
     private lateinit var logoutButton: Button
@@ -62,7 +61,6 @@ class SettingsFragment : Fragment(), SettingsContract.View {
     private fun initializeUIComponents(view: View) {
         userNameTextView = view.findViewById(R.id.userNameTextView)
         userEmailTextView = view.findViewById(R.id.userEmailTextView)
-        viewProfileButton = view.findViewById(R.id.viewProfileButton)
         editProfileButton = view.findViewById(R.id.editProfileButton)
         changePasswordButton = view.findViewById(R.id.changePasswordButton)
         logoutButton = view.findViewById(R.id.logoutButton)
@@ -72,10 +70,6 @@ class SettingsFragment : Fragment(), SettingsContract.View {
      * Set up click listeners for UI components
      */
     private fun setupClickListeners() {
-        viewProfileButton.setOnClickListener {
-            showSuccess("Profile loaded - View ${userNameTextView.text}")
-        }
-
         editProfileButton.setOnClickListener {
             presenter.onEditProfileClicked()
         }
@@ -90,14 +84,12 @@ class SettingsFragment : Fragment(), SettingsContract.View {
     }
 
     override fun showLoading() {
-        viewProfileButton.isEnabled = false
         editProfileButton.isEnabled = false
         changePasswordButton.isEnabled = false
         logoutButton.isEnabled = false
     }
 
     override fun hideLoading() {
-        viewProfileButton.isEnabled = true
         editProfileButton.isEnabled = true
         changePasswordButton.isEnabled = true
         logoutButton.isEnabled = true

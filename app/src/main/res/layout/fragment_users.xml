@@ -1,187 +1,206 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@android:color/white">
 
-    <!-- Header with title and action buttons -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:background="@color/colorPrimary">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/fragment_users_titles"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:fontFamily="@font/poppins_bold" />
-
-        <TextView
-            android:id="@+id/userCountTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/users_user_count_format"
-            android:textSize="14sp"
-            android:textColor="@android:color/white"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/poppins_regular" />
-
-    </LinearLayout>
-
-    <!-- Search and Filter Bar -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="12dp"
-        android:background="@color/light_gray">
-
-        <!-- Search Input -->
-        <EditText
-            android:id="@+id/searchEditText"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:hint="@string/fragment_users_search_hint"
-            android:inputType="text"
-            android:autofillHints="username"
-            android:paddingHorizontal="12dp"
-            android:background="@android:color/white"
-            android:textSize="14sp"
-            android:fontFamily="@font/poppins_regular"
-            tools:ignore="VisualLintTextFieldSize" />
-
-        <!-- Filter and Sort Buttons -->
+        <!-- Header with title and action buttons -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="@color/colorPrimary">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/fragment_users_titles"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:fontFamily="@font/poppins_bold" />
+
+            <TextView
+                android:id="@+id/userCountTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/users_user_count_format"
+                android:textSize="14sp"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/poppins_regular" />
+
+        </LinearLayout>
+
+        <!-- Search and Filter Bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:background="@color/light_gray">
+
+            <!-- Search Input -->
+            <EditText
+                android:id="@+id/searchEditText"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="@string/fragment_users_search_hint"
+                android:inputType="text"
+                android:autofillHints="username"
+                android:paddingHorizontal="12dp"
+                android:background="@android:color/white"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_regular"
+                tools:ignore="VisualLintTextFieldSize" />
+
+            <!-- Filter and Sort Buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="12dp"
+                android:gravity="center_vertical"
+                style="?android:attr/buttonBarStyle">
+
+                <Button
+                    android:id="@+id/filterStatusButton"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/users_filter_all_status"
+                    android:textSize="12sp"
+                    tools:ignore="VisualLintButtonSize,TouchTargetSizeCheck" />
+
+                <Button
+                    android:id="@+id/sortButton"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/users_sort_name"
+                    android:textSize="12sp"
+                    tools:ignore="VisualLintButtonSize,TouchTargetSizeCheck" />
+
+                <Button
+                    android:id="@+id/resetFiltersButton"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/fragment_users_reset_button"
+                    android:textSize="12sp"
+                    tools:ignore="VisualLintButtonSize,TouchTargetSizeCheck" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Bulk Actions Bar (shown when users are selected) -->
+        <LinearLayout
+            android:id="@+id/bulkActionsBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="12dp"
-            android:gravity="center_vertical"
-            style="?android:attr/buttonBarStyle">
+            android:padding="12dp"
+            android:background="@android:color/holo_blue_light"
+            android:visibility="gone"
+            android:gravity="center_vertical">
+
+            <CheckBox
+                android:id="@+id/selectAllCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fragment_users_select_all"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/poppins_medium" />
+
+            <TextView
+                android:id="@+id/selectionCountTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/users_selection_count_format"
+                android:textSize="14sp"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_bold" />
 
             <Button
-                android:id="@+id/filterStatusButton"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="0dp"
+                android:id="@+id/bulkActionsMenuButton"
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/poppins_medium"
-                android:text="@string/users_filter_all_status"
+                android:text="@string/fragment_users_actions_button"
                 android:textSize="12sp"
-                tools:ignore="VisualLintButtonSize,TouchTargetSizeCheck" />
+                android:fontFamily="@font/poppins_medium" />
 
-            <Button
-                android:id="@+id/sortButton"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/poppins_medium"
-                android:text="@string/users_sort_name"
-                android:textSize="12sp"
-                tools:ignore="VisualLintButtonSize,TouchTargetSizeCheck" />
+        </LinearLayout>
 
-            <Button
-                android:id="@+id/resetFiltersButton"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/poppins_medium"
-                android:text="@string/fragment_users_reset_button"
-                android:textSize="12sp"
-                tools:ignore="VisualLintButtonSize,TouchTargetSizeCheck" />
+        <!-- RecyclerView for Users List -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/usersRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="8dp"
+            android:clipToPadding="false" />
+
+        <!-- Empty State -->
+        <LinearLayout
+            android:id="@+id/emptyStateLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fragment_users_empty_title"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/darker_gray"
+                android:fontFamily="@font/poppins_bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fragment_users_empty_subtitle"
+                android:textSize="14sp"
+                android:textColor="@android:color/darker_gray"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins_regular" />
 
         </LinearLayout>
 
     </LinearLayout>
 
-    <!-- Bulk Actions Bar (shown when users are selected) -->
-    <LinearLayout
-        android:id="@+id/bulkActionsBar"
-        android:layout_width="match_parent"
+    <!-- Floating Action Button for Add User (Admin only) -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addUserFab"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="12dp"
-        android:background="@android:color/holo_blue_light"
-        android:visibility="gone"
-        android:gravity="center_vertical">
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/add_user_fab_description"
+        android:src="@android:drawable/ic_input_add"
+        app:tint="@android:color/white"
+        app:backgroundTint="@color/colorPrimary" />
 
-        <CheckBox
-            android:id="@+id/selectAllCheckBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/fragment_users_select_all"
-            android:layout_marginEnd="16dp"
-            android:fontFamily="@font/poppins_medium" />
-
-        <TextView
-            android:id="@+id/selectionCountTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/users_selection_count_format"
-            android:textSize="14sp"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"
-            android:fontFamily="@font/poppins_bold" />
-
-        <Button
-            android:id="@+id/bulkActionsMenuButton"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:text="@string/fragment_users_actions_button"
-            android:textSize="12sp"
-            android:fontFamily="@font/poppins_medium" />
-
-    </LinearLayout>
-
-    <!-- RecyclerView for Users List -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/usersRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingHorizontal="8dp"
-        android:paddingVertical="8dp"
-        android:clipToPadding="false" />
-
-    <!-- Empty State -->
-    <LinearLayout
-        android:id="@+id/emptyStateLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:visibility="gone">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/fragment_users_empty_title"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/darker_gray"
-            android:fontFamily="@font/poppins_bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/fragment_users_empty_subtitle"
-            android:textSize="14sp"
-            android:textColor="@android:color/darker_gray"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/poppins_regular" />
-
-    </LinearLayout>
-
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

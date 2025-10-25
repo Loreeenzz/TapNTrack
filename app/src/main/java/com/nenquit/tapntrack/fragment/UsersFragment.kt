@@ -1,5 +1,6 @@
 package com.nenquit.tapntrack.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,11 +14,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.nenquit.tapntrack.R
+import com.nenquit.tapntrack.activity.adduser.AddUserActivity
 import com.nenquit.tapntrack.adapter.UsersAdapter
 import com.nenquit.tapntrack.models.User
 import com.nenquit.tapntrack.mvp.users.UsersContract
 import com.nenquit.tapntrack.mvp.users.UsersPresenter
+import com.nenquit.tapntrack.utils.SessionManager
 
 /**
  * UsersFragment: Displays user management and administration features.
@@ -41,6 +45,8 @@ class UsersFragment : Fragment(), UsersContract.View {
     private lateinit var selectionCountTextView: TextView
     private lateinit var bulkActionsMenuButton: Button
     private lateinit var emptyStateLayout: LinearLayout
+    private lateinit var addUserFab: FloatingActionButton
+    private lateinit var sessionManager: SessionManager
 
     // State
     private var currentSortBy = "name"
@@ -57,8 +63,8 @@ class UsersFragment : Fragment(), UsersContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Initialize presenter
-        presenter = UsersPresenter()
+        // Initialize presenter with context for session management
+        presenter = UsersPresenter(requireContext())
         presenter.attach(this)
 
         // Initialize UI components
@@ -89,6 +95,17 @@ class UsersFragment : Fragment(), UsersContract.View {
         selectionCountTextView = view.findViewById(R.id.selectionCountTextView)
         bulkActionsMenuButton = view.findViewById(R.id.bulkActionsMenuButton)
         emptyStateLayout = view.findViewById(R.id.emptyStateLayout)
+        addUserFab = view.findViewById(R.id.addUserFab)
+
+        // Initialize session manager
+        sessionManager = SessionManager(requireContext())
+
+        // Show/hide FAB based on admin status
+        if (sessionManager.isAdmin()) {
+            addUserFab.visibility = View.VISIBLE
+        } else {
+            addUserFab.visibility = View.GONE
+        }
     }
 
     /**
@@ -144,6 +161,12 @@ class UsersFragment : Fragment(), UsersContract.View {
         bulkActionsMenuButton.setOnClickListener {
             showBulkActionsMenu()
         }
+
+        // FAB click listener to open AddUserActivity
+        addUserFab.setOnClickListener {
+            val intent = Intent(requireContext(), AddUserActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     /**
@@ -185,8 +208,7 @@ class UsersFragment : Fragment(), UsersContract.View {
     private fun showSortMenu() {
         val options = arrayOf(
             getString(R.string.users_sort_name),
-            getString(R.string.users_sort_created),
-            getString(R.string.users_sort_last_login)
+            getString(R.string.users_sort_created)
         )
         val builder = android.app.AlertDialog.Builder(requireContext())
         builder.setTitle("Sort Users")
@@ -201,11 +223,6 @@ class UsersFragment : Fragment(), UsersContract.View {
                     currentSortBy = "createdAt"
                     sortButton.text = getString(R.string.users_sort_created)
                     presenter.sortUsers("createdAt")
-                }
-                2 -> {
-                    currentSortBy = "lastLogin"
-                    sortButton.text = getString(R.string.users_sort_last_login)
-                    presenter.sortUsers("lastLogin")
                 }
             }
         }

@@ -24,15 +24,15 @@ class AttendanceAdapter(private val attendanceRecords: List<Track>) :
         private val eventLocationTextView: TextView = itemView.findViewById(R.id.eventLocationTextView)
 
         fun bind(track: Track) {
-            eventTypeTextView.text = track.eventType
+            eventTypeTextView.text = track.status
             eventTypeTextView.setTextColor(
                 itemView.context.getColor(
-                    if (track.eventType == "CHECK_IN") android.R.color.holo_green_dark
+                    if (track.status == "PRESENT") android.R.color.holo_green_dark
                     else android.R.color.holo_red_dark
                 )
             )
 
-            val dateTime = dateTimeFormat.format(Date(track.timestamp))
+            val dateTime = dateTimeFormat.format(Date(track.timeIn))
             eventTimeTextView.text = dateTime
 
             eventLocationTextView.text = itemView.context.getString(

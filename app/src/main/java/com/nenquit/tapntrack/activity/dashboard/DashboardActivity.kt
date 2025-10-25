@@ -66,6 +66,13 @@ class DashboardActivity : FragmentActivity() {
      * Set up bottom navigation item selection listener
      */
     private fun setupBottomNavigation() {
+        // Hide users menu for students
+        val userRole = sessionManager.getUserRole()
+        if (userRole == "STUDENT") {
+            val usersMenu = bottomNavigation.menu.findItem(R.id.menu_users)
+            usersMenu?.isVisible = false
+        }
+
         bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.menu_home -> {
@@ -129,26 +136,5 @@ class DashboardActivity : FragmentActivity() {
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         finish()
-    }
-
-    /**
-     * Show logout confirmation and perform logout
-     */
-    private fun showLogoutConfirmation() {
-        try {
-            // Clear saved session
-            sessionManager.clearUserSession()
-
-            // Sign out from Firebase
-            firebaseAuth.signOut()
-
-            // Show success message
-            Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show()
-
-            // Navigate back to login
-            navigateToLogin()
-        } catch (e: Exception) {
-            Toast.makeText(this, "Logout failed: ${e.message}", Toast.LENGTH_SHORT).show()
-        }
     }
 }

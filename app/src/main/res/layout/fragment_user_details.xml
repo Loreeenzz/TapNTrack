@@ -6,33 +6,33 @@
     android:orientation="vertical"
     android:background="@android:color/white">
 
-    <!-- Header with back button -->
+    <!-- Header -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp"
         android:background="@color/colorPrimary"
-        android:gravity="center_vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <Button
             android:id="@+id/backButton"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_medium"
             android:text="@string/fragment_user_details_back_button"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
             android:textSize="14sp" />
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/fragment_user_details_title"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/poppins_bold"
-            android:layout_marginStart="16dp" />
+            android:text="@string/fragment_user_details_title"
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
 
     </LinearLayout>
 
@@ -191,34 +191,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/fragment_user_details_rate_placeholder"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            android:layout_marginTop="4dp"
-                            android:fontFamily="@font/poppins_bold" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:padding="12dp"
-                        android:background="@android:color/white">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_regular"
-                            android:text="@string/fragment_user_details_stat_logins"
-                            android:textColor="#757575"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:id="@+id/totalLoginsTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/fragment_user_details_stat_placeholder"
                             android:textSize="20sp"
                             android:textStyle="bold"
                             android:layout_marginTop="4dp"

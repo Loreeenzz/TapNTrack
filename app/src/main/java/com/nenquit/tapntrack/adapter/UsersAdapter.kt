@@ -24,19 +24,36 @@ class UsersAdapter(
 
     private val selectedUsers = mutableSetOf<String>() // Set of selected user UIDs
     private val dateFormat = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault())
-    private val timeFormat = SimpleDateFormat("hh:mm a", Locale.getDefault())
 
     inner class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val nameTextView: TextView = itemView.findViewById(R.id.userName)
         private val emailTextView: TextView = itemView.findViewById(R.id.userEmail)
+        private val roleTextView: TextView = itemView.findViewById(R.id.userRole)
         private val statusTextView: TextView = itemView.findViewById(R.id.userStatus)
         private val createdDateTextView: TextView = itemView.findViewById(R.id.userCreatedDate)
-        private val lastLoginTextView: TextView = itemView.findViewById(R.id.userLastLogin)
         private val selectCheckBox: CheckBox = itemView.findViewById(R.id.userSelectCheckBox)
 
         fun bind(user: User) {
             nameTextView.text = user.name
             emailTextView.text = user.email
+
+            // Role badge
+            val roleText = when (user.role) {
+                "ADMIN" -> itemView.context.getString(R.string.role_admin)
+                "TEACHER" -> itemView.context.getString(R.string.role_teacher)
+                "STUDENT" -> itemView.context.getString(R.string.role_student)
+                else -> user.role
+            }
+            roleTextView.text = roleText
+
+            // Set role badge color based on role
+            val roleColor = when (user.role) {
+                "ADMIN" -> android.R.color.holo_red_dark
+                "TEACHER" -> android.R.color.holo_blue_dark
+                "STUDENT" -> android.R.color.holo_green_dark
+                else -> android.R.color.darker_gray
+            }
+            roleTextView.background.setTint(itemView.context.getColor(roleColor))
 
             // Status
             val statusText = if (user.isActive) {
@@ -45,12 +62,15 @@ class UsersAdapter(
                 itemView.context.getString(R.string.user_status_inactive)
             }
             statusTextView.text = statusText
-            statusTextView.setTextColor(
-                itemView.context.getColor(
-                    if (user.isActive) android.R.color.holo_green_dark
-                    else android.R.color.holo_red_dark
-                )
-            )
+
+            // Set status badge background and text color
+            if (user.isActive) {
+                statusTextView.setBackgroundResource(R.drawable.status_badge_active)
+                statusTextView.setTextColor(itemView.context.getColor(android.R.color.white))
+            } else {
+                statusTextView.setBackgroundResource(R.drawable.status_badge_inactive)
+                statusTextView.setTextColor(itemView.context.getColor(android.R.color.white))
+            }
 
             // Created date
             val createdDate = dateFormat.format(Date(user.createdAt))
@@ -58,19 +78,6 @@ class UsersAdapter(
                 R.string.user_created_format,
                 createdDate
             )
-
-            // Last login
-            if (user.lastLoginTime > 0) {
-                val lastLogin = dateFormat.format(Date(user.lastLoginTime))
-                val lastLoginTime = timeFormat.format(Date(user.lastLoginTime))
-                lastLoginTextView.text = itemView.context.getString(
-                    R.string.user_last_login_format,
-                    lastLogin,
-                    lastLoginTime
-                )
-            } else {
-                lastLoginTextView.text = itemView.context.getString(R.string.user_last_login_never)
-            }
 
             // Checkbox
             selectCheckBox.isChecked = selectedUsers.contains(user.uid)

@@ -9,7 +9,7 @@ import com.google.firebase.database.DatabaseReference
  */
 @Suppress("unused")
 class FirebaseHelper {
-    private val database: FirebaseDatabase = FirebaseDatabase.getInstance("https://tapntrack-00001-default-rtdb.asia-southeast1.firebasedatabase.app")
+    private val database: FirebaseDatabase = FirebaseDatabase.getInstance("https://tapntrack-00011-default-rtdb.asia-southeast1.firebasedatabase.app")
 
     /**
      * Get a reference to any path in the database
@@ -46,11 +46,11 @@ class FirebaseHelper {
     }
 
     /**
-     * Get a reference to user's tracks
-     * @param uid The user's unique identifier
-     * @return DatabaseReference to user's tracks node
+     * Get a reference to a specific track/log by ID
+     * @param trackId The track's unique identifier
+     * @return DatabaseReference to track's data node
      */
-    fun getUserTracksReference(uid: String): DatabaseReference {
-        return database.getReference("tracks/$uid")
+    fun getTrackReference(trackId: String): DatabaseReference {
+        return database.getReference("tracks/$trackId")
     }
 }

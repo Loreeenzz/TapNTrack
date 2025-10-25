@@ -39,7 +39,6 @@ class UserDetailsFragment : Fragment(), UserDetailsContract.View {
     private lateinit var detailUserCreatedDate: TextView
     private lateinit var totalAttendanceTextView: TextView
     private lateinit var attendanceRateTextView: TextView
-    private lateinit var totalLoginsTextView: TextView
     private lateinit var lastSeenTextView: TextView
     private lateinit var attendanceRecyclerView: RecyclerView
     private lateinit var noAttendanceTextView: TextView
@@ -94,7 +93,6 @@ class UserDetailsFragment : Fragment(), UserDetailsContract.View {
         detailUserCreatedDate = view.findViewById(R.id.detailUserCreatedDate)
         totalAttendanceTextView = view.findViewById(R.id.totalAttendanceTextView)
         attendanceRateTextView = view.findViewById(R.id.attendanceRateTextView)
-        totalLoginsTextView = view.findViewById(R.id.totalLoginsTextView)
         lastSeenTextView = view.findViewById(R.id.lastSeenTextView)
         attendanceRecyclerView = view.findViewById(R.id.attendanceRecyclerView)
         noAttendanceTextView = view.findViewById(R.id.noAttendanceTextView)
@@ -202,8 +200,7 @@ class UserDetailsFragment : Fragment(), UserDetailsContract.View {
             getString(R.string.user_details_activate_button)
         }
 
-        // Calculate statistics
-        presenter.calculateUserStatistics(currentUserId)
+        // Statistics will be calculated after attendance records are loaded
     }
 
     override fun displayAttendanceRecords(tracks: List<Track>) {
@@ -220,15 +217,13 @@ class UserDetailsFragment : Fragment(), UserDetailsContract.View {
     override fun displayUserStatistics(
         totalAttendance: Int,
         attendanceRate: Double,
-        lastSeen: Long,
-        totalLogins: Int
+        lastSeen: Long
     ) {
         totalAttendanceTextView.text = totalAttendance.toString()
         attendanceRateTextView.text = getString(
             R.string.user_details_attendance_rate_format,
             attendanceRate
         )
-        totalLoginsTextView.text = totalLogins.toString()
 
         if (lastSeen > 0) {
             val lastSeenDate = dateTimeFormat.format(Date(lastSeen))

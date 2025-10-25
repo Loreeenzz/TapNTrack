@@ -5,14 +5,18 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.nenquit.tapntrack.models.User
 import com.nenquit.tapntrack.utils.FirebaseHelper
+import com.nenquit.tapntrack.utils.SessionManager
+import android.content.Context
 
 /**
  * UsersPresenter: Handles user management business logic.
  * Manages user loading, filtering, searching, and sorting from Firebase.
+ * Implements role-based filtering: ADMIN sees all, TEACHER sees their students, STUDENT sees nothing.
  */
-class UsersPresenter : UsersContract.Presenter {
+class UsersPresenter(private val context: Context? = null) : UsersContract.Presenter {
     private var view: UsersContract.View? = null
     private val firebaseHelper: FirebaseHelper = FirebaseHelper()
+    private var sessionManager: SessionManager? = null
     private var allUsers: List<User> = emptyList()
     private var currentFilteredUsers: List<User> = emptyList()
 
@@ -20,9 +24,17 @@ class UsersPresenter : UsersContract.Presenter {
     private var searchQuery: String = ""
     private var statusFilter: Boolean? = null // null = no filter, true = active, false = inactive
     private var currentSortBy: String = "name" // "name", "createdAt", "lastLogin"
+    private var currentUserRole: String = "STUDENT"
+    private var currentUserId: String = ""
 
     override fun attach(view: UsersContract.View) {
         this.view = view
+        // Initialize SessionManager from view context if available
+        if (context != null) {
+            sessionManager = SessionManager(context)
+            currentUserRole = sessionManager?.getUserRole() ?: "STUDENT"
+            currentUserId = sessionManager?.getUserUID() ?: ""
+        }
     }
 
     override fun detach() {
@@ -45,7 +57,7 @@ class UsersPresenter : UsersContract.Presenter {
                                 users.add(User.fromMap(userData))
                             }
                             allUsers = users
-                            currentFilteredUsers = users
+                            applyRoleBasedFilter()
                             applyCurrentFilters()
                             view?.displayUsers(currentFilteredUsers)
                         } catch (e: Exception) {
@@ -64,6 +76,20 @@ class UsersPresenter : UsersContract.Presenter {
                     view?.showError("Failed to load users: ${error.message}")
                 }
             })
+    }
+
+    /**
+     * Filter users based on current user's role
+     * - ADMIN: sees all users except themselves
+     * - TEACHER: sees only their students
+     * - STUDENT: sees no other users
+     */
+    private fun applyRoleBasedFilter() {
+        currentFilteredUsers = when (currentUserRole) {
+            "ADMIN" -> allUsers.filter { it.uid != currentUserId }
+            "TEACHER" -> allUsers.filter { it.teacherId == currentUserId }
+            else -> emptyList() // STUDENT and others see no users
+        }
     }
 
     override fun searchUsers(query: String) {
@@ -85,8 +111,8 @@ class UsersPresenter : UsersContract.Presenter {
         searchQuery = ""
         statusFilter = null
         currentSortBy = "name"
-        currentFilteredUsers = allUsers
-        view?.displayUsers(currentFilteredUsers)
+        // Apply role-based filter instead of showing all users
+        applyCurrentFilters()
     }
 
     override fun onUserSelected(user: User) {
@@ -215,7 +241,12 @@ class UsersPresenter : UsersContract.Presenter {
      * Apply current filters and search to the user list
      */
     private fun applyCurrentFilters() {
-        var filtered = allUsers
+        // Start with role-filtered users, not all users
+        var filtered = when (currentUserRole) {
+            "ADMIN" -> allUsers.filter { it.uid != currentUserId }
+            "TEACHER" -> allUsers.filter { it.teacherId == currentUserId }
+            else -> emptyList() // STUDENT and others see no users
+        }
 
         // Apply search filter
         if (searchQuery.isNotEmpty()) {
@@ -233,7 +264,6 @@ class UsersPresenter : UsersContract.Presenter {
         // Apply sorting
         filtered = when (currentSortBy) {
             "createdAt" -> filtered.sortedByDescending { it.createdAt }
-            "lastLogin" -> filtered.sortedByDescending { it.lastLoginTime }
             else -> filtered.sortedBy { it.name }
         }
 

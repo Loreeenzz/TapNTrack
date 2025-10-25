@@ -46,6 +46,23 @@
 
     <!-- Dashboard Screen -->
     <string name="logout_button">Logout</string>
+    <string name="dashboard_title">Dashboard</string>
+    <string name="dashboard_date_placeholder">Loading date…</string>
+    <string name="dashboard_today_attendance">Today\'s Attendance Summary</string>
+    <string name="dashboard_total_students_format">Total: %d students tracked today</string>
+    <string name="dashboard_total_students_placeholder">Total: 0 students tracked today</string>
+    <string name="dashboard_count_placeholder">0</string>
+    <string name="dashboard_present">Present</string>
+    <string name="dashboard_late">Late</string>
+    <string name="dashboard_absent">Absent</string>
+    <string name="dashboard_students">Active\nStudents</string>
+    <string name="dashboard_teachers">Active\nTeachers</string>
+    <string name="dashboard_logs_week">Logs This\nWeek</string>
+    <string name="dashboard_recent_activity">Recent Activity</string>
+    <string name="dashboard_no_activity">No activity today</string>
+    <string name="dashboard_view_all_logs">View All Logs</string>
+    <string name="dashboard_view_all_users">View All Users</string>
+    <string name="dashboard_unknown_student">Unknown Student</string>
 
     <!-- Bottom Navigation Menu -->
     <string name="menu_home">Home</string>
@@ -65,18 +82,21 @@
 
     <!-- Settings Screen -->
     <string name="settings_title">Settings</string>
+    <string name="settings_subtitle">Manage your account and preferences</string>
     <string name="settings_profile_information">Profile Information</string>
+    <string name="settings_account_actions">Account Actions</string>
     <string name="settings_name_label">Name:</string>
     <string name="settings_email_label">Email:</string>
     <string name="settings_view_profile_button">View Profile</string>
     <string name="settings_edit_profile_button">Edit Profile</string>
     <string name="settings_change_password_button">Change Password</string>
     <string name="settings_logout_button">Logout</string>
-    <string name="settings_loading">Loading...</string>
+    <string name="settings_loading">Loading&#8230;</string>
     <string name="settings_profile_loaded">Profile loaded - View %s</string>
 
     <!-- Edit Profile Screen -->
     <string name="edit_profile_title">Edit Profile</string>
+    <string name="edit_profile_subtitle">Update your personal information</string>
     <string name="edit_profile_email_label">Email Address</string>
     <string name="edit_profile_name_label">Full Name</string>
     <string name="edit_profile_name_hint">Enter your full name</string>
@@ -90,6 +110,8 @@
 
     <!-- Change Password Screen -->
     <string name="change_password_title">Change Password</string>
+    <string name="change_password_subtitle">Update your account password</string>
+    <string name="change_password_form_title">Password Information</string>
     <string name="change_password_current_label">Current Password</string>
     <string name="change_password_current_hint">Enter your current password</string>
     <string name="change_password_new_label">New Password</string>
@@ -129,7 +151,6 @@
     <string name="user_item_email_placeholder">student@school.com</string>
     <string name="user_item_status_placeholder">Active</string>
     <string name="user_item_created_placeholder">Created: Oct 01, 2024</string>
-    <string name="user_item_last_login_placeholder">Last login: Oct 20, 2024 at 02:30 PM</string>
 
     <!-- Users Fragment Strings -->
     <string name="fragment_users_titles">User Management</string>
@@ -148,7 +169,6 @@
     <string name="fragment_user_details_attendance_section">Recent Attendance Records</string>
     <string name="fragment_user_details_stat_attendance">Total Attendance</string>
     <string name="fragment_user_details_stat_rate">Attendance Rate</string>
-    <string name="fragment_user_details_stat_logins">Total Logins</string>
     <string name="fragment_user_details_no_records">No attendance records found</string>
     <string name="fragment_user_details_stat_placeholder">0</string>
     <string name="fragment_user_details_rate_placeholder">0%</string>
@@ -164,8 +184,6 @@
     <string name="user_status_active">Active</string>
     <string name="user_status_inactive">Inactive</string>
     <string name="user_created_format">Created: %s</string>
-    <string name="user_last_login_format">Last login: %s at %s</string>
-    <string name="user_last_login_never">Last login: Never</string>
 
     <!-- User Details Fragment Strings -->
     <string name="user_details_name_format">Name: %s</string>
@@ -185,7 +203,6 @@
     <string name="users_filter_status_inactive">Status: Inactive</string>
     <string name="users_sort_name">Sort: Name</string>
     <string name="users_sort_created">Sort: Date Created</string>
-    <string name="users_sort_last_login">Sort: Last Login</string>
     <string name="users_user_count_format">%d user%s</string>
     <string name="users_no_selection_error">No users selected</string>
     <string name="users_bulk_actions_title">Bulk Actions (%d users)</string>
@@ -197,4 +214,93 @@
     <!-- Common Errors -->
     <string name="error_user_not_logged_in">User not logged in</string>
     <string name="error_generic">An error occurred. Please try again.</string>
+
+    <!-- Add User Activity -->
+    <string name="add_user_title">Add New User</string>
+    <string name="add_user_subtitle">Create a new teacher or student account</string>
+    <string name="add_user_email_label">Email Address</string>
+    <string name="add_user_email_hint">Enter email address</string>
+    <string name="add_user_password_label">Password</string>
+    <string name="add_user_password_hint">Enter password (min 6 characters)</string>
+    <string name="add_user_name_label">Full Name</string>
+    <string name="add_user_name_hint">Enter full name</string>
+    <string name="add_user_role_label">Select Role</string>
+    <string name="add_user_role_teacher">Teacher</string>
+    <string name="add_user_role_student">Student</string>
+    <string name="add_user_teacher_label">Assign to Teacher</string>
+    <string name="add_user_teacher_hint">Select teacher</string>
+    <string name="add_user_cancel_button">Cancel</string>
+    <string name="add_user_create_button">Create User</string>
+    <string name="add_user_fab_description">Add new user</string>
+    <string name="add_user_success">User created successfully</string>
+    <string name="add_user_error">Failed to create user: %s</string>
+    <string name="add_user_access_denied">Access denied. Admin privileges required.</string>
+    <string name="add_user_loading_teachers">Loading teachers&#8230;</string>
+    <string name="add_user_no_teachers">No teachers available</string>
+
+    <!-- Role Labels -->
+    <string name="role_admin">ADMIN</string>
+    <string name="role_teacher">TEACHER</string>
+    <string name="role_student">STUDENT</string>
+
+    <!-- Logs / Attendance -->
+    <string name="log_rfid_format">RFID: %s</string>
+    <string name="log_time_in_format">In: %s</string>
+    <string name="log_time_out_format">Out: %s</string>
+    <string name="log_duration_format">Duration: %s</string>
+    <string name="log_still_in">Still In</string>
+    <string name="log_unknown_student">Unknown Student</string>
+    <string name="log_time_in_label">Time In</string>
+    <string name="log_time_out_label">Time Out</string>
+    <string name="log_duration_label">Duration</string>
+    <string name="logs_title">Attendance Logs</string>
+    <string name="logs_count">0 logs</string>
+    <string name="logs_present">Present</string>
+    <string name="logs_late">Late</string>
+    <string name="logs_absent">Absent</string>
+    <string name="logs_present_count">0</string>
+    <string name="logs_late_count">0</string>
+    <string name="logs_absent_count">0</string>
+    <string name="logs_search_hint">Search by name or RFID…</string>
+    <string name="logs_filter_date">Date</string>
+    <string name="logs_filter_status">Status</string>
+    <string name="logs_filter_sort">Sort</string>
+    <string name="logs_empty_title">No Logs Found</string>
+    <string name="logs_empty_message">There are no attendance logs to display.\nLogs will appear here when students scan their RFID cards.</string>
+    <string name="logs_add_manual">Add manual log</string>
+
+    <!-- Log Details -->
+    <string name="log_details_title">Attendance Log Details</string>
+    <string name="log_details_back">← Back</string>
+    <string name="log_details_student_info">Student Information</string>
+    <string name="log_details_name">Name:</string>
+    <string name="log_details_rfid">RFID Tag:</string>
+    <string name="log_details_status">Status:</string>
+    <string name="log_details_attendance_info">Attendance Details</string>
+    <string name="log_details_date">Date:</string>
+    <string name="log_details_time_in">Time In:</string>
+    <string name="log_details_time_out">Time Out:</string>
+    <string name="log_details_duration">Duration:</string>
+    <string name="log_details_location">Location:</string>
+    <string name="log_details_edit">Edit Log</string>
+    <string name="log_details_delete">Delete Log</string>
+    <string name="log_details_still_in">Still In</string>
+    <string name="log_details_unknown_student">Unknown Student</string>
+    <string name="log_details_na">N/A</string>
+    <string name="log_details_edit_coming_soon">Edit functionality coming soon</string>
+    <string name="log_details_delete_title">Delete Log</string>
+    <string name="log_details_delete_message">Are you sure you want to delete this attendance log? This action cannot be undone.</string>
+    <string name="log_details_delete_confirm">Delete</string>
+    <string name="log_details_delete_cancel">Cancel</string>
+    <string name="log_details_delete_success">Log deleted successfully</string>
+    <string name="log_details_delete_failed">Failed to delete log: %s</string>
+    <string name="log_details_log_id_not_found">Log ID not found</string>
+    <string name="log_details_invalid_data">Invalid log data</string>
+    <string name="log_details_not_found">Log not found</string>
+    <string name="log_details_load_failed">Failed to load log: %s</string>
+
+    <!-- Bulk Actions (Common) -->
+    <string name="select_all">Select All</string>
+    <string name="selection_count">%d selected</string>
+    <string name="actions">Actions</string>
 </resources>

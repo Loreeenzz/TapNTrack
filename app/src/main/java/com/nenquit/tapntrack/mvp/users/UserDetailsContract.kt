@@ -52,9 +52,8 @@ interface UserDetailsContract {
          * @param totalAttendance Total attendance records count
          * @param attendanceRate Attendance rate percentage
          * @param lastSeen Last seen timestamp
-         * @param totalLogins Total login count
          */
-        fun displayUserStatistics(totalAttendance: Int, attendanceRate: Double, lastSeen: Long, totalLogins: Int)
+        fun displayUserStatistics(totalAttendance: Int, attendanceRate: Double, lastSeen: Long)
 
         /**
          * Navigate back to users list

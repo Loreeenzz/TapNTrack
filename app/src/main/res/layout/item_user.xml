@@ -50,6 +50,19 @@
                 android:layout_marginTop="8dp">
 
                 <TextView
+                    android:id="@+id/userRole"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/role_badge_bg"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="4dp"
+                    android:text="@string/role_teacher"
+                    android:textColor="#212121"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
                     android:id="@+id/userStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -71,15 +84,6 @@
                     android:textSize="12sp" />
 
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/userLastLogin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="@string/user_item_last_login_placeholder"
-                android:textColor="#757575"
-                android:textSize="12sp" />
 
         </LinearLayout>
 

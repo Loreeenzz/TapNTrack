@@ -3,6 +3,7 @@ package com.nenquit.tapntrack.activity.login
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import android.os.Handler
 import android.os.Looper
@@ -26,6 +27,10 @@ class LoginActivity : Activity(), LoginContract.View {
     private var animationRunnable: Runnable? = null
     private var dotCount = 0
     private lateinit var sessionManager: SessionManager
+
+    companion object {
+        private const val TAG = "LoginActivity"
+    }
 
     // UI components (to be bound from layout)
     private lateinit var emailEditText: android.widget.EditText
@@ -148,10 +153,14 @@ class LoginActivity : Activity(), LoginContract.View {
     }
 
     override fun navigateToDashboard() {
+        Log.d(TAG, "navigateToDashboard: Creating intent to DashboardActivity")
         val intent = Intent(this, DashboardActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        Log.d(TAG, "navigateToDashboard: Starting DashboardActivity")
         startActivity(intent)
+        Log.d(TAG, "navigateToDashboard: Finishing LoginActivity")
         finish()
+        Log.d(TAG, "navigateToDashboard: Complete")
     }
 
     override fun navigateToSignUp() {

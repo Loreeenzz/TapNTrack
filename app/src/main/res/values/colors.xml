@@ -11,4 +11,6 @@
     <color name="colorPrimaryDark">@color/purple_700</color>
     <color name="colorAccent">@color/teal_200</color>
     <color name="light_gray">#FFF5F5F5</color>
+    <color name="primary">#FF6200EE</color>
+    <color name="selected_item_background">#E3F2FD</color>
 </resources>

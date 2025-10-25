@@ -8,11 +8,10 @@ data class User(
     val uid: String = "",
     val email: String = "",
     val name: String = "",
-    val role: String = "STUDENT", // ADMIN, TEACHER, STUDENT
+    val role: String = "STUDENT", // ADMIN: manages all users | TEACHER: manages students | STUDENT: role badge only
+    val teacherId: String? = null, // Teacher UID if user is a STUDENT, null for ADMIN and TEACHER
     val isActive: Boolean = true,
     val createdAt: Long = 0L,
-    val lastLoginTime: Long = 0L,
-    val loginCount: Int = 0,
     val attendanceRate: Double = 0.0
 ) {
     /**
@@ -24,10 +23,9 @@ data class User(
             "email" to email,
             "name" to name,
             "role" to role,
+            "teacherId" to (teacherId ?: ""),
             "isActive" to isActive,
             "createdAt" to createdAt,
-            "lastLoginTime" to lastLoginTime,
-            "loginCount" to loginCount,
             "attendanceRate" to attendanceRate
         )
     }
@@ -42,10 +40,9 @@ data class User(
                 email = data["email"] as? String ?: "",
                 name = data["name"] as? String ?: "",
                 role = data["role"] as? String ?: "STUDENT",
+                teacherId = (data["teacherId"] as? String)?.takeIf { it.isNotEmpty() },
                 isActive = (data["isActive"] as? Boolean) ?: true,
                 createdAt = (data["createdAt"] as? Number)?.toLong() ?: 0L,
-                lastLoginTime = (data["lastLoginTime"] as? Number)?.toLong() ?: 0L,
-                loginCount = (data["loginCount"] as? Number)?.toInt() ?: 0,
                 attendanceRate = (data["attendanceRate"] as? Number)?.toDouble() ?: 0.0
             )
         }

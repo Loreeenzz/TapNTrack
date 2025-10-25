@@ -54,7 +54,10 @@ class UserDetailsPresenter : UserDetailsContract.Presenter {
     }
 
     override fun loadAttendanceRecords(userId: String) {
-        firebaseHelper.getUserTracksReference(userId)
+        // Query tracks where userId equals the user's UID
+        firebaseHelper.getTracksReference()
+            .orderByChild("userId")
+            .equalTo(userId)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
@@ -65,15 +68,21 @@ class UserDetailsPresenter : UserDetailsContract.Presenter {
                                 val trackData = trackSnapshot.value as? Map<String, Any> ?: continue
                                 records.add(Track.fromMap(trackData))
                             }
-                            // Sort by timestamp descending (newest first)
-                            attendanceRecords = records.sortedByDescending { it.timestamp }
+                            // Sort by timeIn descending (newest first)
+                            attendanceRecords = records.sortedByDescending { it.timeIn }
                             view?.displayAttendanceRecords(attendanceRecords)
+
+                            // Calculate statistics AFTER records are loaded
+                            calculateUserStatistics(userId)
                         } catch (e: Exception) {
                             view?.showError("Failed to load attendance records: ${e.message}")
                         }
                     } else {
                         attendanceRecords = emptyList()
                         view?.displayAttendanceRecords(emptyList())
+
+                        // Still calculate statistics even if no records
+                        calculateUserStatistics(userId)
                     }
                 }
 
@@ -85,12 +94,33 @@ class UserDetailsPresenter : UserDetailsContract.Presenter {
 
     override fun calculateUserStatistics(userId: String) {
         currentUser?.let { user ->
+            // Total Attendance: Count of all attendance records
             val totalAttendance = attendanceRecords.size
-            val attendanceRate = user.attendanceRate
-            val lastSeen = user.lastLoginTime
-            val totalLogins = user.loginCount
 
-            view?.displayUserStatistics(totalAttendance, attendanceRate, lastSeen, totalLogins)
+            // Attendance Rate: Calculate based on PRESENT and LATE vs total records
+            val attendanceRate = if (attendanceRecords.isNotEmpty()) {
+                val presentCount = attendanceRecords.count {
+                    it.status == "PRESENT" || it.status == "LATE"
+                }
+                (presentCount.toDouble() / attendanceRecords.size) * 100.0
+            } else {
+                0.0
+            }
+
+            // Last Seen: Get the most recent timeIn from attendance records
+            val lastSeen = if (attendanceRecords.isNotEmpty()) {
+                attendanceRecords.maxOfOrNull { it.timeIn } ?: 0L
+            } else {
+                0L
+            }
+
+            // Update user's attendance rate in Firebase for future reference
+            if (attendanceRecords.isNotEmpty()) {
+                firebaseHelper.getUserReference(userId)
+                    .updateChildren(mapOf("attendanceRate" to attendanceRate))
+            }
+
+            view?.displayUserStatistics(totalAttendance, attendanceRate, lastSeen)
         }
     }
 

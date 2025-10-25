@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "22607670253",
-    "project_id": "tapntrack-00001",
-    "storage_bucket": "tapntrack-00001.firebasestorage.app"
+    "project_number": "353448994099",
+    "project_id": "tapntrack-00011",
+    "storage_bucket": "tapntrack-00011.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:22607670253:android:bc2dca4e1ea7d6bd9015e4",
+        "mobilesdk_app_id": "1:353448994099:android:63a87c6096205ae92e0a46",
         "android_client_info": {
           "package_name": "com.nenquit.tapntrack"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyATPPqfpuCtwmw5e5DWbSPCQhWxi0v46A8"
+          "current_key": "AIzaSyANsxuvXqiHH81uC5KHLsTmyogta2l7t4k"
         }
       ],
       "services": {

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Header -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_user_title"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/add_user_subtitle"
+            android:textColor="#757575"
+            android:textSize="14sp" />
+
+        <!-- Info Note -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="ℹ️ Passwords are auto-generated. Users are for tracking only and cannot log in."
+            android:textColor="#2196F3"
+            android:textSize="12sp"
+            android:background="#E3F2FD"
+            android:padding="8dp" />
+
+        <!-- Email Input -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_user_email_label"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_marginBottom="4dp" />
+
+        <EditText
+            android:id="@+id/emailEditText"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="@string/add_user_email_hint"
+            android:inputType="textEmailAddress"
+            android:autofillHints="emailAddress"
+            android:paddingHorizontal="12dp"
+            android:background="@drawable/edit_text_background"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_marginBottom="16dp"
+            tools:ignore="VisualLintTextFieldSize" />
+
+        <!-- Password Input - HIDDEN: Passwords are auto-generated since users don't log in -->
+        <TextView
+            android:id="@+id/passwordLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_user_password_label"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_marginBottom="4dp"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/passwordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="@string/add_user_password_hint"
+            android:inputType="textPassword"
+            android:autofillHints="password"
+            android:paddingHorizontal="12dp"
+            android:background="@drawable/edit_text_background"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_marginBottom="16dp"
+            android:visibility="gone"
+            tools:ignore="VisualLintTextFieldSize" />
+
+        <!-- Name Input -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_user_name_label"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_marginBottom="4dp" />
+
+        <EditText
+            android:id="@+id/nameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="@string/add_user_name_hint"
+            android:inputType="textPersonName"
+            android:autofillHints="name"
+            android:paddingHorizontal="12dp"
+            android:background="@drawable/edit_text_background"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_marginBottom="24dp"
+            tools:ignore="VisualLintTextFieldSize" />
+
+        <!-- Role Selection -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_user_role_label"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_marginBottom="8dp" />
+
+        <RadioGroup
+            android:id="@+id/roleRadioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="16dp">
+
+            <RadioButton
+                android:id="@+id/teacherRadioButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/add_user_role_teacher"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_regular"
+                android:paddingVertical="8dp"
+                tools:ignore="VisualLintButtonSize" />
+
+            <RadioButton
+                android:id="@+id/studentRadioButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/add_user_role_student"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_regular"
+                android:paddingVertical="8dp"
+                tools:ignore="VisualLintButtonSize" />
+
+        </RadioGroup>
+
+        <!-- Teacher Selection (for Students) -->
+        <LinearLayout
+            android:id="@+id/teacherSelectionLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_user_teacher_label"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/poppins_semibold"
+                android:layout_marginBottom="8dp" />
+
+            <Spinner
+                android:id="@+id/teacherSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/edit_text_background"
+                android:paddingHorizontal="12dp"
+                tools:ignore="VisualLintTextFieldSize" />
+
+        </LinearLayout>
+
+        <!-- Action Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="16dp"
+            style="?android:attr/buttonBarStyle">
+
+            <Button
+                android:id="@+id/cancelButton"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/add_user_cancel_button"
+                android:textColor="#757575"
+                android:textSize="14sp"
+                tools:ignore="VisualLintButtonSize" />
+
+            <Button
+                android:id="@+id/addUserButton"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="@string/add_user_create_button"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@android:color/white"
+                android:background="@color/colorPrimary"
+                tools:ignore="VisualLintButtonSize" />
+
+        </LinearLayout>
+
+        <!-- Progress Bar -->
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+</ScrollView>
