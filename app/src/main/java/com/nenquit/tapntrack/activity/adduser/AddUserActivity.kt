@@ -41,7 +41,7 @@ class AddUserActivity : Activity(), AddUserContract.View {
     private lateinit var cancelButton: Button
     private lateinit var progressBar: ProgressBar
 
-    private val database = FirebaseDatabase.getInstance("https://tapntrack-00011-default-rtdb.asia-southeast1.firebasedatabase.app")
+    private val database = FirebaseDatabase.getInstance("https://tap-n-track-d0310-default-rtdb.asia-southeast1.firebasedatabase.app")
     private val teachers = mutableListOf<User>()
     private val teacherNames = mutableListOf<String>()
     private val teacherIds = mutableListOf<String>()

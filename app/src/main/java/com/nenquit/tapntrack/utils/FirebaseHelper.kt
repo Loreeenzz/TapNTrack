@@ -9,7 +9,7 @@ import com.google.firebase.database.DatabaseReference
  */
 @Suppress("unused")
 class FirebaseHelper {
-    private val database: FirebaseDatabase = FirebaseDatabase.getInstance("https://tapntrack-00011-default-rtdb.asia-southeast1.firebasedatabase.app")
+    private val database: FirebaseDatabase = FirebaseDatabase.getInstance("https://tap-n-track-d0310-default-rtdb.asia-southeast1.firebasedatabase.app")
 
     /**
      * Get a reference to any path in the database

@@ -19,7 +19,7 @@ import java.util.UUID
 class AddUserPresenter : AddUserContract.Presenter {
     private var view: AddUserContract.View? = null
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
-    private val database: FirebaseDatabase = FirebaseDatabase.getInstance("https://tapntrack-00011-default-rtdb.asia-southeast1.firebasedatabase.app")
+    private val database: FirebaseDatabase = FirebaseDatabase.getInstance("https://tap-n-track-d0310-default-rtdb.asia-southeast1.firebasedatabase.app")
 
     // Store admin credentials for re-authentication after creating users
     private var adminEmail: String? = null
